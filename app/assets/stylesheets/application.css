@@ -13,3 +13,47 @@
  *= require_tree .
  *= require_self
  */
+/* Background styling */
+body {
+  background-image: url('background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  color: white; /* Default text color for contrast */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Main container styling */
+.main-container {
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+  border-radius: 10px;
+  margin: 50px auto;
+  max-width: 900px; /* Adjust based on your app's needs */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Button styling */
+.fancy-button {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.fancy-button:hover {
+  background-color: darkblue;
+  transform: scale(1.05);
+}
+
+.fancy-button:active {
+  background-color: navy;
+  transform: scale(0.95);
+}
