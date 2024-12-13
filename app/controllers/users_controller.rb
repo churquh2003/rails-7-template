@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  # Callbacks
   before_action :set_user, only: %i[show edit update destroy]
 
   # GET /users
@@ -9,7 +8,7 @@ class UsersController < ApplicationController
 
   # GET /users/:id
   def show
-    @emails = @user.emails # Assuming a user has many emails
+    @emails = @user.emails # Display emails for the selected user
   end
 
   # GET /users/new
@@ -47,14 +46,13 @@ class UsersController < ApplicationController
 
   private
 
-  # Callback to set user for certain actions 
+  # Find user for actions
   def set_user
     @user = User.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters 
+  # Permit allowed parameters
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
-  
 end
