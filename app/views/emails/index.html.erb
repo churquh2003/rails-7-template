@@ -25,5 +25,9 @@
   </tbody>
 </table>
 
-<%= link_to 'New Email', new_user_email_path(@user) %> |
-<%= link_to 'Back to User', user_path(@user) %>
+<hr>
+
+<%= link_to 'New Email', new_user_email_path(@user), class: 'btn btn-success' %> |
+<%= link_to 'Back to User', user_path(@user), class: 'btn btn-secondary' %> |
+<%= link_to 'Prioritize Emails', prioritize_user_emails_path(@user), class: 'btn btn-primary' %> |
+<%= link_to 'Find Unsubscribe Links', unsubscribe_links_user_emails_path(@user), class: 'btn btn-danger' %>

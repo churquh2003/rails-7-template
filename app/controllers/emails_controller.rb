@@ -47,5 +47,33 @@ class EmailsController < ApplicationController
   def email_params
     params.require(:email).permit(:subject, :body, :recipient)
   end
-end
 
+  def prioritize
+    emails = Email.all.map do |email|
+      {
+        subject: email.subject,
+        body: email.body
+      }
+  end
+  
+    ai_service = OpenAIService.new
+    @prioritized_emails = ai_service.prioritize_emails(emails)
+  
+    render :prioritize
+  end
+  
+  def unsubscribe_links
+    emails = Email.all.map do |email|
+      {
+        subject: email.subject,
+        body: email.body
+      }
+    end
+  
+    ai_service = OpenAIService.new
+    @unsubscribe_links = ai_service.find_unsubscribe_links(emails)
+  
+    render :unsubscribe_links
+  end
+  
+end
