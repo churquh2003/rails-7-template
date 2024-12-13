@@ -1,0 +1,29 @@
+<h1>Emails for <%= @user.name %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Subject</th>
+      <th>Recipient</th>
+      <th>Body</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @emails.each do |email| %>
+      <tr>
+        <td><%= email.subject %></td>
+        <td><%= email.recipient %></td>
+        <td><%= truncate(email.body, length: 50) %></td>
+        <td>
+          <%= link_to 'Show', user_email_path(@user, email) %> |
+          <%= link_to 'Edit', edit_user_email_path(@user, email) %> |
+          <%= link_to 'Delete', user_email_path(@user, email), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Email', new_user_email_path(@user) %> |
+<%= link_to 'Back to User', user_path(@user) %>

@@ -1,0 +1,17 @@
+<h1><%= @user.name %>'s Profile</h1>
+<p><strong>Email:</strong> <%= @user.email %></p>
+
+<h2>Emails</h2>
+<ul>
+  <% @emails.each do |email| %>
+    <li>
+      <strong>Subject:</strong> <%= email.subject %> <br>
+      <strong>Recipient:</strong> <%= email.recipient %> <br>
+      <strong>Body:</strong> <%= email.body %> <br>
+      <%= link_to 'Show Email', user_email_path(@user, email) %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Edit User', edit_user_path(@user) %> |
+<%= link_to 'Back to Users', users_path %>
