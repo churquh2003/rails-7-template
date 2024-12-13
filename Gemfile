@@ -45,6 +45,13 @@ gem "bootsnap", require: false
 # Install ruby openAI gem
 gem "ruby-openai"
 
+# Install OAuth2 gem
+gem "rack-oauth2"
+
+# Install gmail api
+gem "google-apis-gmail_v1"
+
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

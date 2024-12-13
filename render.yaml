@@ -1,11 +1,12 @@
 services:
   - type: web
-    name: my-app-name # the name of this service, you should change this
-    runtime: ruby # this app is written in ruby
-    plan: free # make sure to set this to free or you'll get billed $$$
-    buildCommand: "./bin/render-build.sh" # we already created these two files for you
+    name: email-agentic-workflow # Updated name to reflect your app
+    runtime: ruby # This app is written in Ruby
+    plan: free # Ensure you're on the free plan
+    buildCommand: "./bin/render-build.sh" # Customize your build command if needed
     startCommand: "./bin/render-start.sh"
-    envVars: # this section sets some ENV variables needed by Render for deployment
+    envVars: 
+      # Render-provided ENV variables
       - key: SECRET_KEY_BASE
         generateValue: true
       - key: DATABASE_URL
@@ -14,7 +15,20 @@ services:
           property: connectionString
       - key: WEB_CONCURRENCY
         value: 2
-databases: # this section provides some additional database configuration
+      
+      # Application-specific ENV variables
+      - key: OPENAI_API_KEY
+        sync: false # Add your OpenAI API key in Render's dashboard for security
+      - key: GOOGLE_APPLICATION_CREDENTIALS
+        value: /path/to/email-agentic-workflow-622fe974ccd1.json
+      - key: GMAIL_API_SCOPES
+        value: "https://www.googleapis.com/auth/gmail.readonly,https://www.googleapis.com/auth/gmail.modify"
+      - key: RAILS_ENV
+        value: production
+      - key: RACK_ENV
+        value: production
+      
+databases: 
   - name: db
     plan: free
-    ipAllowList: []
+    ipAllowList: [] 

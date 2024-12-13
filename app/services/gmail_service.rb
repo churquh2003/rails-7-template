@@ -3,19 +3,15 @@ require 'googleauth'
 require 'googleauth/stores/file_token_store'
 
 class GmailService
-  OOB_URI = 'urn:ietf:wg:oauth:2.0:oob'
-  SCOPE = Google::Apis::GmailV1::AUTH_GMAIL_READONLY
-  TOKEN_PATH = 'token.yaml'
-  CREDENTIALS_PATH = 'credentials.json'
-
   def initialize
     @service = Google::Apis::GmailV1::GmailService.new
-    @service.client_options.application_name = 'Agentic Workflow'
-    @service.authorization = authorize
+    @service.authorization = Google::Auth::ServiceAccountCredentials.make_creds(
+      json_key_io: File.open(ENV['GOOGLE_APPLICATION_CREDENTIALS']),
+      scope: 'https://www.googleapis.com/auth/gmail.readonly'
+    )
   end
 
-  def fetch_emails
-    user_id = 'me'
+  def fetch_emails(user_id = 'me')
     @service.list_user_messages(user_id).messages
   end
 

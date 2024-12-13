@@ -24,4 +24,8 @@ class Email < ApplicationRecord
   validates :recipient, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :subject, presence: true
   validates :body, presence: true
+
+  def prioritize
+    OpenaiService.new.prioritize_emails(self)
+  end
 end

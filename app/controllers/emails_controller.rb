@@ -10,7 +10,9 @@ class EmailsController < ApplicationController
   end
 
   # GET /users/:user_id/emails/:id
-  def show; end
+  def show
+    render json: @email
+  end
 
   # GET /users/:user_id/emails/new
   def new
@@ -33,6 +35,24 @@ class EmailsController < ApplicationController
     redirect_to user_emails_path(@user), notice: 'Email was successfully deleted.'
   end
 
+  # GET /emails/prioritize
+  def prioritize
+    emails = Email.all
+    prioritized_emails = OpenAIService.new.prioritize_emails(emails)
+    render json: prioritized_emails
+  end
+
+  # GET /emails/unsubscribe_links
+  def unsubscribe_links
+    emails = Email.all.map do |email|
+      { subject: email.subject, body: email.body }
+    end
+
+    ai_service = OpenAIService.new
+    @unsubscribe_links = ai_service.find_unsubscribe_links(emails)
+    render json: @unsubscribe_links
+  end
+
   private
 
   # Find the user to scope emails
@@ -49,33 +69,4 @@ class EmailsController < ApplicationController
   def email_params
     params.require(:email).permit(:subject, :body, :recipient)
   end
-
-  def prioritize
-    emails = Email.all.map do |email|
-      {
-        subject: email.subject,
-        body: email.body
-      }
-  end
-  
-    ai_service = OpenAIService.new
-    @prioritized_emails = ai_service.prioritize_emails(emails)
-  
-    render :prioritize
-  end
-  
-  def unsubscribe_links
-    emails = Email.all.map do |email|
-      {
-        subject: email.subject,
-        body: email.body
-      }
-    end
-  
-    ai_service = OpenAIService.new
-    @unsubscribe_links = ai_service.find_unsubscribe_links(emails)
-  
-    render :unsubscribe_links
-  end
-  
 end
