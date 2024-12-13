@@ -20,23 +20,21 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
-  color: white; /* Default text color for contrast */
+  color: white; 
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
 }
 
-/* Main container styling */
 .main-container {
   padding: 20px;
-  background: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+  background: rgba(0, 0, 0, 0.7);
   border-radius: 10px;
   margin: 50px auto;
-  max-width: 900px; /* Adjust based on your app's needs */
+  max-width: 900px; 
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Button styling */
 .fancy-button {
   background-color: blue;
   color: white;
