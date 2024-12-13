@@ -2,11 +2,14 @@ Rails.application.routes.draw do
   # Devise routes for user authentication
   devise_for :users
 
-  # Root route - Redirect to records#index after sign-in
-  root "records#index"
+  # Root route - Redirect to user_emails#index after sign-in
+  root "user_emails#index"
 
-  # Routes for records (Capstone Project form handling)
-  resources :records, only: [:index, :new, :create]
+  # Routes for user_emails (Capstone Project form handling)
+  resources :user_emails, only: [:index, :new, :create]
+
+  # Routes for consent
+  resource :consent, only: [:new, :create]
 
   # Routes for Users
   resources :users, only: [:index, :show] do
@@ -16,7 +19,7 @@ Rails.application.routes.draw do
     end
   end
 
-  # Routes for Emails
+  # Routes for Emails (if still relevant for a legacy project)
   resources :emails, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     collection do
       get 'prioritize'

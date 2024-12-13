@@ -1,0 +1,11 @@
+<h1>Your Saved Emails</h1>
+
+<%= link_to 'Add New Email', new_user_email_path %>
+
+<ul>
+  <% @user_emails.each do |user_email| %>
+    <li>
+      <strong><%= user_email.subject %></strong>: <%= user_email.content %>
+    </li>
+  <% end %>
+</ul>

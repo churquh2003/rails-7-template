@@ -1,0 +1,14 @@
+<h1>Consent to Store Gmail Data</h1>
+
+<p>
+  To continue using our service, we require your consent to store and process your Gmail data in compliance with our <a href="#">Privacy Policy</a>.
+</p>
+
+<%= form_with url: consent_path, local: true do %>
+  <div>
+    <%= check_box_tag :consent, "1" %>
+    <%= label_tag :consent, "I consent to store and process my Gmail data" %>
+  </div>
+
+  <%= submit_tag "Submit Consent", class: "btn btn-primary" %>
+<% end %>

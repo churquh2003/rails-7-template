@@ -1,0 +1,17 @@
+<h1>Add a New Email</h1>
+
+<%= form_with model: @user_email, local: true do |f| %>
+  <div>
+    <%= f.label :subject %>
+    <%= f.text_field :subject %>
+  </div>
+
+  <div>
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+  </div>
+
+  <div>
+    <%= f.submit 'Save Email' %>
+  </div>
+<% end %>
