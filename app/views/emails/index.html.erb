@@ -1,33 +1,9 @@
-<h1>Emails for <%= @user.name %></h1>
+<h1>Your Emails</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Subject</th>
-      <th>Recipient</th>
-      <th>Body</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @emails.each do |email| %>
-      <tr>
-        <td><%= email.subject %></td>
-        <td><%= email.recipient %></td>
-        <td><%= truncate(email.body, length: 50) %></td>
-        <td>
-          <%= link_to 'Show', user_email_path(@user, email) %> |
-          <%= link_to 'Edit', edit_user_email_path(@user, email) %> |
-          <%= link_to 'Delete', user_email_path(@user, email), method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= link_to 'New Email', new_email_path %>
 
-<hr>
-
-<%= link_to 'New Email', new_user_email_path(@user), class: 'btn btn-success' %> |
-<%= link_to 'Back to User', user_path(@user), class: 'btn btn-secondary' %> |
-<%= link_to 'Prioritize Emails', prioritize_user_emails_path(@user), class: 'btn btn-primary' %> |
-<%= link_to 'Find Unsubscribe Links', unsubscribe_links_user_emails_path(@user), class: 'btn btn-danger' %>
+<ul>
+  <% @emails.each do |email| %>
+    <li><strong><%= email.subject %></strong>: <%= email.content %></li>
+  <% end %>
+</ul>

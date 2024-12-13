@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.2.2"
+gem "ruby"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.2"
@@ -51,6 +51,8 @@ gem "rack-oauth2"
 # Install gmail api
 gem "google-apis-gmail_v1"
 
+# Install devise
+gem "devise"
 
 # Use Sass to process CSS
 # gem "sassc-rails"

@@ -1,24 +1,19 @@
 <h1>New Email</h1>
 
-<%= form_with model: [@user, @email], local: true do |form| %>
+<%= form_with model: @email, local: true do |f| %>
   <div>
-    <%= form.label :subject %><br>
-    <%= form.text_field :subject %>
+    <%= f.label :subject %>
+    <%= f.text_field :subject %>
   </div>
 
   <div>
-    <%= form.label :recipient %><br>
-    <%= form.text_field :recipient %>
+    <%= f.label :content %>
+    <%= f.text_area :content %>
   </div>
 
   <div>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= f.submit 'Create Email' %>
   </div>
 <% end %>
 
-<%= link_to 'Back to User', user_path(@user) %>
+<%= link_to 'Back', emails_path %>

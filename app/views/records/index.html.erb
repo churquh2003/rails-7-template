@@ -1,0 +1,9 @@
+<h1>Your Records</h1>
+
+<%= link_to 'New Record', new_record_path %>
+
+<ul>
+  <% @records.each do |record| %>
+    <li><strong><%= record.name %></strong>: <%= record.description %></li>
+  <% end %>
+</ul>

@@ -1,72 +1,26 @@
 class EmailsController < ApplicationController
-  before_action :set_user
-  before_action :set_email, only: %i[show edit update destroy]
+  before_action :authenticate_user!
 
-  # GET /users/:user_id/emails
   def index
-    gmail_service = GmailService.new
-    emails = gmail_service.fetch_emails
-    render json: emails
+    @emails = current_user.emails
   end
 
-  # GET /users/:user_id/emails/:id
-  def show
-    render json: @email
-  end
-
-  # GET /users/:user_id/emails/new
   def new
-    @email = @user.emails.new
+    @email = Email.new
   end
 
-  # POST /users/:user_id/emails
   def create
-    @email = @user.emails.new(email_params)
+    @email = current_user.emails.build(email_params)
     if @email.save
-      redirect_to user_emails_path(@user), notice: 'Email was successfully created.'
+      redirect_to emails_path, notice: 'Email created successfully.'
     else
-      render :new, status: :unprocessable_entity
+      render :new
     end
-  end
-
-  # DELETE /users/:user_id/emails/:id
-  def destroy
-    @email.destroy
-    redirect_to user_emails_path(@user), notice: 'Email was successfully deleted.'
-  end
-
-  # GET /emails/prioritize
-  def prioritize
-    emails = Email.all
-    prioritized_emails = OpenAIService.new.prioritize_emails(emails)
-    render json: prioritized_emails
-  end
-
-  # GET /emails/unsubscribe_links
-  def unsubscribe_links
-    emails = Email.all.map do |email|
-      { subject: email.subject, body: email.body }
-    end
-
-    ai_service = OpenAIService.new
-    @unsubscribe_links = ai_service.find_unsubscribe_links(emails)
-    render json: @unsubscribe_links
   end
 
   private
 
-  # Find the user to scope emails
-  def set_user
-    @user = User.find(params[:user_id])
-  end
-
-  # Find the specific email within the user's emails
-  def set_email
-    @email = @user.emails.find(params[:id])
-  end
-
-  # Permit only the allowed parameters
   def email_params
-    params.require(:email).permit(:subject, :body, :recipient)
+    params.require(:email).permit(:subject, :content)
   end
 end

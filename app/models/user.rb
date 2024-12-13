@@ -1,19 +1,15 @@
-# == Schema Information
-#
-# Table name: users
-#
-#  id         :bigint           not null, primary key
-#  email      :string
-#  name       :string
-#  username   :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
 class User < ApplicationRecord
-  has_many :emails, dependent: :destroy
+    # Include default devise modules. Others available are:
+    # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+  
 
+  # Associations
+  has_many :emails, dependent: :destroy
+  has_many :records, dependent: :destroy
+
+  # Validations
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-
-  has_secure_password
 end
