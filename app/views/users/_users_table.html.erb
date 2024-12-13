@@ -1,15 +1,13 @@
-<h1>All Users</h1>
-
 <table>
   <thead>
     <tr>
-      <th><%= link_to 'Name (A-Z)', sort_by_name_users_path %></th>
-      <th><%= link_to 'Email (A-Z)', sort_by_email_users_path %></th>
+      <th>Name</th>
+      <th>Email</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
-    <% @users.each do |user| %>
+    <% users.each do |user| %>
       <tr>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
@@ -22,5 +20,3 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to 'New User', new_user_path %>

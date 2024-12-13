@@ -1,10 +1,22 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
 
-  # GET /users
-  def index
-    @users = User.all
+  def sort_by_email
+    @users = User.order(:email)
+    render :index # Explicitly render the `index` view or a specific view
   end
+
+  def sort_by_name
+    @users = User.order(:name)
+    render :index
+  end
+
+  # GET /users
+def index
+  @users = User.all
+  @users = @users.order(name: :asc) if params[:filter] == 'name'
+  @users = @users.order(email: :asc) if params[:filter] == 'email'
+end
 
   # GET /users/:id
   def show
@@ -55,4 +67,8 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
+
 end
+
+ 
+  

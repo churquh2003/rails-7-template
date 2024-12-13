@@ -42,6 +42,9 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
+# Install ruby openAI gem
+gem "ruby-openai"
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
@@ -86,6 +89,7 @@ gem "sqlite3", "~> 1.4"
 gem "table_print"
 gem "simple_form"
 gem "carrierwave"
+gem "openai"
 
 group :development do
   gem "annotate"

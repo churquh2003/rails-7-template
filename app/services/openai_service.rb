@@ -1,6 +1,7 @@
-require 'openai'
+require "ruby/openai"
+require "openai"
 
-class OpenAIService
+class OpenaiService
   def initialize
     @client = OpenAI::Client.new(access_token: ENV.fetch("OPENAI_API_KEY"))
   end
@@ -22,7 +23,7 @@ class OpenAIService
       }
     )
 
-    response['choices'].first['message']['content']
+    response["choices"].first["message"]["content"]
   end
 
   def find_unsubscribe_links(emails)
@@ -42,6 +43,6 @@ class OpenAIService
       }
     )
 
-    response['choices'].first['message']['content']
+    response["choices"].first["message"]["content"]
   end
 end
