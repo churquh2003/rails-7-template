@@ -4,7 +4,9 @@ class EmailsController < ApplicationController
 
   # GET /users/:user_id/emails
   def index
-    @emails = @user.emails
+    gmail_service = GmailService.new
+    emails = gmail_service.fetch_emails
+    render json: emails
   end
 
   # GET /users/:user_id/emails/:id

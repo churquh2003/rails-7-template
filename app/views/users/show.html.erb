@@ -3,7 +3,7 @@
 
 <h2>Emails</h2>
 <ul>
-  <% @emails.each do |email| %>
+  <% @emails.all do |email| %>
     <li>
       <strong>Subject:</strong> <%= email.subject %> <br>
       <strong>Recipient:</strong> <%= email.recipient %> <br>

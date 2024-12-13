@@ -12,15 +12,14 @@ class UsersController < ApplicationController
   end
 
   # GET /users
-def index
-  @users = User.all
-  @users = @users.order(name: :asc) if params[:filter] == 'name'
-  @users = @users.order(email: :asc) if params[:filter] == 'email'
-end
+  def index
+    @users = User.all
+    render json: @users
+  end
 
-  # GET /users/:id
   def show
-    @emails = @user.emails # Display emails for the selected user
+    @user = User.find(params[:id])
+    render json: @user
   end
 
   # GET /users/new

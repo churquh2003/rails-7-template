@@ -26,10 +26,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_13_084451) do
 
   create_table "users", force: :cascade do |t|
     t.string "email"
-    t.string "username"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
   end
 
   add_foreign_key "emails", "users"
