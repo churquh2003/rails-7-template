@@ -3,7 +3,6 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
-#  consented              :boolean
 #  email                  :string
 #  encrypted_password     :string           default(""), not null
 #  name                   :string
@@ -27,9 +26,9 @@ class User < ApplicationRecord
   
 
   # Associations
-  has_many :emails, dependent: :destroy
+  has_many :user_emails, dependent: :destroy
   has_many :records, dependent: :destroy
 
   # Validations
-  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :user_email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 end

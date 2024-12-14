@@ -31,16 +31,7 @@ module RailsTemplate
 
     # Don't generate system test files
     config.generators.system_tests = nil
-
-    # Load Google credentials from environment variables
-    if ENV['GOOGLE_CREDENTIALS_JSON'].present?
-      google_credentials = ENV['GOOGLE_CREDENTIALS_JSON']
-      File.write('google_credentials.json', google_credentials)
-      ENV['GOOGLE_CREDENTIALS'] = 'google_credentials.json'
-    else
-      Rails.logger.warn("Google credentials are not set. Gmail API integration may not work.")
-    end
-
+    
     # AI Integration Configuration (OpenAI)
     config.after_initialize do
       if ENV['OPENAI_API_KEY'].nil?
