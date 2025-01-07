@@ -25,5 +25,9 @@ Rails.application.routes.draw do
       get 'prioritize'
       get 'unsubscribe_links'
     end
+
+  resources :users do
+    resources :user_emails, only: [:show]
+    end
   end
 end

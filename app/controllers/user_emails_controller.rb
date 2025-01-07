@@ -14,9 +14,11 @@ class UserEmailsController < ApplicationController
     end
   end
   
+  # app/controllers/user_emails_controller.rb
   def index
     @user_emails = current_user.user_emails
   end
+
   
   private
   

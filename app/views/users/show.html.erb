@@ -8,7 +8,7 @@
       <strong>Subject:</strong> <%= email.subject %> <br>
       <strong>Recipient:</strong> <%= email.recipient %> <br>
       <strong>Body:</strong> <%= email.body %> <br>
-      <%= link_to 'Show Email', user_email_path(@user, email) %>
+      <%= link_to 'Show Email', user_email_path(@user, user_email) %>
     </li>
   <% end %>
 </ul>

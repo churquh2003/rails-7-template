@@ -30,5 +30,15 @@ class User < ApplicationRecord
   has_many :records, dependent: :destroy
 
   # Validations
+  # Before
   validates :user_email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+
+  # After
+  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+
+
+  def user_email
+    self.email # Adjust this logic based on your requirements.
+  end
+
 end

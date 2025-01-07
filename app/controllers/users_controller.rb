@@ -18,5 +18,16 @@ class UsersController < ApplicationController
     # Logic to fetch user emails, e.g., return an array of email addresses
     ["email1@example.com", "email2@example.com"]
   end
+
+  def create
+    Rails.logger.debug "Current User: #{current_user.inspect}"
+  
+    if current_user.update(consented: true)
+      redirect_to user_emails_path, notice: "Thank you for providing consent!"
+    else
+      redirect_to new_consent_path, alert: "An error occurred. Please try again."
+    end
+  end
+  
   
 end
